@@ -6,35 +6,34 @@ class View(ft.UserControl):
         super().__init__()
         # page stuff
         self._page = page
-        self._page.title = "Template application using MVC and DAO"
+        self._page.title = "TdP Lab 09"
         self._page.horizontal_alignment = 'CENTER'
-        self._page.theme_mode = ft.ThemeMode.DARK
+        self._page.theme_mode = ft.ThemeMode.LIGHT
         # controller (it is not initialized. Must be initialized in the main, after the controller is created)
         self._controller = None
         # graphical elements
         self._title = None
-        self.txt_name = None
-        self.btn_hello = None
+        self._txtInDistMin = None
+        self._btnAnalizzaA = None
         self.txt_result = None
         self.txt_container = None
 
     def load_interface(self):
         # title
-        self._title = ft.Text("Hello World", color="blue", size=24)
+        self._title = ft.Text("Flights Manager", color="blue", size=24)
         self._page.controls.append(self._title)
 
-        #ROW with some controls
-        # text field for the name
-        self.txt_name = ft.TextField(
-            label="name",
-            width=200,
+       #row1
+        self._txtInDistMin = ft.TextField(
+            label="Distanza Minima",
+            width=400,
             hint_text="Insert a your name"
         )
+        self._btnAnalizzaA = ft.ElevatedButton(text="Analizza Aeroporti", on_click=self._controller.handle_analizza_areoporti)
 
-        # button for the "hello" reply
-        self.btn_hello = ft.ElevatedButton(text="Hello", on_click=self._controller.handle_hello)
-        row1 = ft.Row([self.txt_name, self.btn_hello],
+        row1 = ft.Row([self._txtInDistMin, self._btnAnalizzaA],
                       alignment=ft.MainAxisAlignment.CENTER)
+
         self._page.controls.append(row1)
 
         # List View where the reply is printed
